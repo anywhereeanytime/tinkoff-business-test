@@ -1,18 +1,15 @@
-/* Box sizing rules */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
-/* Prevent font size inflation */
 html {
   -moz-text-size-adjust: none;
   -webkit-text-size-adjust: none;
   text-size-adjust: none;
 }
 
-/* Remove default margin in favour of better control in authored CSS */
 body,
 h1,
 h2,
@@ -26,50 +23,53 @@ dd {
   margin-block-end: 0;
 }
 
-/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
-ul[role="list"],
-ol[role="list"] {
-  list-style: none;
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
 
-/* Set core body defaults */
+li {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
 body {
   min-height: 100vh;
   line-height: 1.5;
 }
 
-/* Set shorter line heights on headings and interactive elements */
 h1,
 h2,
 h3,
 h4,
-button,
+h5 button,
 input,
 label {
   line-height: 1.1;
 }
 
-/* Balance text wrapping on headings */
 h1,
 h2,
 h3,
-h4 {
+h4,
+h5 {
   text-wrap: balance;
 }
 
-/* A elements that don't have a class get default styles */
 a:not([class]) {
   text-decoration-skip-ink: auto;
   color: currentColor;
 }
 
-/* Make images easier to work with */
 img,
 picture {
   max-width: 100%;
+  display: block;
+  object-fit: contain;
 }
 
-/* Inherit fonts for inputs and buttons */
 input,
 button,
 textarea,
@@ -78,33 +78,46 @@ select {
   font-size: inherit;
 }
 
-/* Make sure textareas without a rows attribute are not tiny */
 textarea:not([rows]) {
   min-height: 10em;
 }
 
-/* Anything that has been anchored to should have extra scroll margin */
 :target {
   scroll-margin-block: 5ex;
 }
 
+a {
+  text-decoration: none;
+  color: #0068ff;
+}
+
 :root {
   /* margin-bottom */
-  --spacing-static-20: 20px;
-  --spacing-static-48: 48px;
-  --spacing-static-64: 64px;
+  --spacing-20: 20px;
+  --spacing-48: 48px;
+  --spacing-64: 64px;
+  --spacing-28: 28px;
 }
 
-.spacing-static-20 {
-  margin-bottom: var(--spacing-static-20);
+.spacing-20 {
+  margin-bottom: var(--spacing-20);
 }
 
-.spacing-static-48 {
-  margin-bottom: var(--spacing-static-48);
+.spacing-48 {
+  margin-bottom: var(--spacing-48);
 }
 
-.spacing-static-64 {
-  margin-bottom: var(--spacing-static-64);
+.spacing-64 {
+  margin-bottom: var(--spacing-64);
+}
+
+@media (max-width: 768px) {
+  .spacing-48 {
+    margin-bottom: var(--spacing-28);
+  }
+  .spacing-64 {
+    margin-bottom: var(--spacing-48);
+  }
 }
 
 body {
@@ -121,31 +134,50 @@ h3 {
   line-height: 40px;
 }
 
-main {
+@media (max-width: 1024px) {
+  h3 {
+    font-size: 24px;
+    line-height: 24px;
+  }
+}
+
+.container {
   max-width: 992px;
-  margin: auto;
-  display: grid;
-  grid-template-columns: 70% 30%;
+  margin: 0 auto;
 }
 
-main > * {
-  margin-bottom: var(--spacing-static-20);
+.container > * {
+  margin-bottom: var(--spacing-20);
 }
 
-main > *:last-child {
+.container > *:last-child {
   margin-bottom: 0;
 }
 
-main > picture {
-  grid-column: span 2;
-  margin-bottom: 0;
+.text-content {
+  max-width: 680px;
+}
+
+main .container picture {
+  margin-bottom: 8px;
+  width: 100%;
+}
+
+span {
+  font-weight: 700;
 }
 
 .figcaption {
   font-size: 15px;
   line-height: 24px;
   max-width: 680px;
-  margin-bottom: var(--spacing-static-48);
+  margin-bottom: var(--spacing-48);
+}
+
+@media screen and (max-width: 768px) {
+  .figcaption {
+    margin-bottom: var(--spacing-28);
+  }
 }
 
 .list-container h4 {
@@ -158,5 +190,122 @@ ol {
 }
 
 .list-container ol li:not(:last-child) {
-  margin-bottom: var(--spacing-static-20);
+  margin-bottom: var(--spacing-20);
+}
+
+@media screen and (min-width: 1440px) {
+  .link-container {
+    position: relative;
+  }
+}
+
+.link-element {
+  color: #0068ff;
+  font-size: 13px;
+  max-width: 202px;
+  font-weight: 13px;
+  line-height: 20px;
+  padding-left: 32px;
+}
+
+@media screen and (min-width: 768px) {
+  .link-element {
+    max-width: 380px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .link-element {
+    position: absolute;
+    top: 0%;
+    left: 110%;
+    width: 100%;
+    max-width: 264px;
+    padding: 0;
+  }
+}
+
+.recommended-articles-wrapper {
+  max-width: 680px;
+  border: 1px solid #cccccc;
+  padding: 28px 32px;
+  position: relative;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 768px) {
+  .recommended-articles-wrapper {
+    padding: 20px 16px 8px 16px;
+  }
+}
+
+.recommended-list div {
+  border-top: 1px solid #cccccc;
+}
+
+.recommended-list li a {
+  color: #0068ff;
+  text-decoration: none;
+}
+
+.recommended-list li:not(:last-child) div {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  gap: 10px;
+  padding: 6px 0 6px 0;
+  margin-bottom: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .recommended-list li div img {
+    display: none;
+  }
+  .recommended-list li:nth-last-child(1),
+  .recommended-list li:nth-last-child(2) {
+    display: none;
+  }
+}
+
+.recommended-heading-wrapper {
+  margin-bottom: 25px;
+  max-width: 85%;
+  position: relative;
+}
+
+.recommended-heading-wrapper h4 {
+  font-size: 22px;
+  margin: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .recommended-articles-wrapper h4 {
+    line-height: 20px;
+    font-size: 19px;
+    line-height: 28px;
+  }
+}
+
+.recommended-heading-wrapper h4 span {
+  white-space: nowrap;
+  border-bottom: 2px solid #cccccc;
+}
+
+.arrow-element {
+  position: absolute;
+  right: 0;
+  top: -30px;
+  transform: translate(100%);
+  z-index: -1;
+}
+
+.text-quote {
+  padding-left: 32px;
+  border-left: 1px solid black;
+}
+
+@media screen and (max-width: 768px) {
+  .text-quote {
+    padding-left: 16px;
+  }
 }
